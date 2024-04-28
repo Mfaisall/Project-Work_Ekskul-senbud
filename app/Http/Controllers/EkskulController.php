@@ -20,7 +20,7 @@ class EkskulController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.Ekskul.tambahData');
     }
 
     /**
@@ -28,7 +28,18 @@ class EkskulController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // dd($request->all());
+        $request->validate([
+            "nama_ekskul" => 'required',
+            "category" => 'required',
+        ]);
+
+        Ekskul::create([
+            "nama_ekskul" => $request->nama_ekskul,
+            "category" => $request->category,
+        ]);      
+        return redirect()->back()->with("AddEkskul", 'Berhasil Menmbahkan Data Ekskul');   
     }
 
     /**

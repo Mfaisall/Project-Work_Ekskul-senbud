@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absen;
+use App\Models\Ekskul;
 use App\Models\Kehadiran;
+use App\Models\Rombel;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -46,11 +48,12 @@ class AbsenController extends Controller
      */
     public function edit(Absen $absen)
     {
-        $studentDatas = Student::with('absen')->get();
+        $ekskul = Ekskul::all();
+        $studentDatas = Student::with('absen', 'rayon', 'rombel')->get();
         if (!$studentDatas) {
             return redirect()->back()->with('error', 'Tidak ada data respon yang ditemukan.');
         }
-        return view('Admin.EditDataAll', compact('studentDatas'));
+        return view('Admin.EditDataAll', compact('studentDatas', 'ekskul'));
     }
 
     /**

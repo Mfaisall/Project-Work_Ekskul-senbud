@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ekskul;
 use App\Models\Student;
+use App\Models\Rombel;
+use App\Models\Rayon;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -12,8 +15,11 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $studentDatas = Student::with('absen')->get();
-        return view("Admin.AllData", compact('studentDatas'));
+        $rombels = Rombel::all();
+        $rayons = Rayon::all();
+        $ekskul = Ekskul::all();
+        $studentDatas = Student::with('absen', 'rombel', 'rayon', 'ekskul')->get();
+        return view("Admin.AllData", compact('studentDatas', 'rombels', 'rayons', 'ekskul'));
     }
 
     /**
@@ -32,16 +38,18 @@ class StudentController extends Controller
         $request->validate([
             'nama' => 'required',
             'nis' => 'required',
-            'rombel' => 'required',
-            'rayon' => 'required',
+            'rombel_id' => 'required',
+            'rayon_id' => 'required',
+            'ekskul_id' => 'required',
             'jk' => 'required',
         ]);
 
         Student::create([
             'nama' => $request->nama,
             'nis' => $request->nis,
-            'rombel' => $request->rombel,
-            'rayon' => $request->rayon,
+            'rombel_id' => $request->rombel_id,
+            'rayon_id' => $request->rayon_id,
+            'ekskul_id' => $request->ekskul_id,
             'jk' => $request->jk,
         ]);
         return redirect()->route('data.all')->with('success', "Berhasil Menambah Data Siswa");

@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Ekskul extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'nama_ekskul',
+        'category',
+    ];
+    // public function student()
+    // {
+    //     return $this->hasMany(Student::class);
+    // }
 }

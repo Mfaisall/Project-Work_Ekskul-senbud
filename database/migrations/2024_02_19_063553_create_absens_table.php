@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('status_kehadiran', ['hadir', 'alpha', 'izin', 'sakit'])->default('hadir');
             $table->timestamps();
 
-            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            // $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
         });
     }
 

@@ -12,7 +12,8 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        return view('Admin.Gallery.Gallery');
+        $galleries = Gallery::get();
+        return view('Admin.Gallery.Gallery', compact('galleries'));
     }
 
     /**
@@ -20,7 +21,6 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -28,7 +28,19 @@ class GalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'foto' => 'required|image|mimes:jpeg,jpg,png,svg',
+        ]);
+
+        $image = $request->file('foto');
+        $imgName = rand() . '.' . $image->extension();
+        $path = public_path('assets/image/');
+        $image->move($path, $imgName);
+
+        Gallery::create([
+            'foto' =>  $imgName,
+        ]);
+        return redirect()->back()->with('successAdd', "Berhasil menambhakan foto");
     }
 
     /**

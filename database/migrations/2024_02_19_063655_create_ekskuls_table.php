@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('ekskuls', function (Blueprint $table) {
             $table->id();
             $table->string('nama_ekskul');
-            $table->string('tanggal');
-            $table->enum('jenis_ekskul', ['ekskul', 'senibudaya']);
+            $table->enum('category', ['produktif', 'umum', 'senbud']);
             $table->timestamps();
         });
     }

@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('nis');
-            $table->string('rombel');
-            $table->string('rayon');
+            $table->bigInteger('rombel_id');
+            $table->bigInteger('rayon_id');
+            $table->bigInteger('ekskul_id');
             $table->enum('jk', ['Laki-laki', 'Perempuan']);
             $table->timestamps();
+
+            // $table->foreign('rayon_id')->references('id')->on('rayon')->onDelete('set null');
 
         });
     }

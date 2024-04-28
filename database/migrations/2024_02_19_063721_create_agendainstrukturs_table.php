@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('agendainstrukturs', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('alamat');
-            $table->enum('jk', ['Laki-laki', 'Perempuan']);
+            $table->string('Kegiatan');
+            $table->string('tanggal');
+            $table->string('metode_pembelajaran');
             $table->timestamps();
         });
     }
