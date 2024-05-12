@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ekskul;
 use App\Models\Instruktur;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,9 @@ class InstrukturController extends Controller
      */
     public function index()
     {
-        //
+        $ekskul = Ekskul::all();
+        $DataIns = Instruktur::with('absen')->get();
+        return view('Instruktur.index', compact('ekskul', 'DataIns'));
     }
 
     /**
@@ -28,7 +31,18 @@ class InstrukturController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'ekskul_id' => 'required',
+            'jk' => 'required',
+        ]);
+
+        Instruktur::create([
+            'nama' => $request->nama,
+            'ekskul_id' => $request->ekskul_id,
+            'jk' => $request->jk,
+        ]);
+        return redirect()->route('data.instruktur')->with('addBerhasil', 'berhasil menambahkan data instruktur');
     }
 
     /**

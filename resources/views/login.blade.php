@@ -13,8 +13,8 @@
         <h1>Login</h1>
         <form action="{{ route('auth') }}" method="POST">
             @csrf
-            <input type="email" name="email" placeholder="Masukkan email">
-            <input type="password" name="password" placeholder="Masukkan password">
+            <input type="text" name="name" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
             <button type="submit" class="btn btn-primary btn-block btn-large">Log In</button>
         </form>
     </div>

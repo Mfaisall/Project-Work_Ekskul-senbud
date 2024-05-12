@@ -35,7 +35,7 @@ class RoomController extends Controller
         room::create([
             'name' => $request->name,
         ]);
-        return redirect()->route('create.room');
+        return redirect()->route('create.room')->with('AddRoom', 'Berhasil menambah data ruangan');
     }
 
     /**

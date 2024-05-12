@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modernize Free</title>
+    <title>Koreksi Absen</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -27,6 +27,7 @@
 </head>
 
 <body>
+ 
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
@@ -63,6 +64,14 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ route('data.instruktur') }}" aria-expanded="false">
+                              <span>
+                                <i class="ti ti-article"></i>
+                              </span>
+                              <span class="hide-menu">Data Absensi instruktur</span>
+                            </a>
+                          </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('jadwal') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-article"></i>
@@ -70,6 +79,7 @@
                                 <span class="hide-menu">Jadwal Ekskul</span>
                             </a>
                         </li>
+                        @if(auth()->check() && auth()->user()->role === 'admin')
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('data.rayon.create') }}" aria-expanded="false">
                                 <span>
@@ -102,6 +112,7 @@
                                 <span class="hide-menu">Tambah Ruangan</span>
                             </a>
                         </li>
+                        @endif
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('data.gallery') }}" aria-expanded="false">
                                 <span>
@@ -134,13 +145,13 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../assets/images/profile/user-1.jpg" alt="" width="35"
+                                    <img  src="{{ asset('assets/image/user.png') }}" alt="" width="35"
                                         height="35" class="rounded-circle">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
                                     aria-labelledby="drop2">
                                     <div class="message-body">
-                                        <a href="./authentication-login.html"
+                                        <a href="{{ route('logout') }}"
                                             class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                                     </div>
                                 </div>
@@ -160,19 +171,29 @@
                                 <div class="container mt-1 m-3">
                                     <form id="filterForm">
                                         <div class="form-group" style="width:30%">
-                                            <label for="filterEkskul">Filter Ekskul:</label>
+                                            <label for="filterEkskul">Filter by Ekskul:</label>
                                             <select class="form-control" id="filterEkskul">
                                                 <option value="" selected hidden disabled>jenis ekskul</option>
                                                 <option value="all">Semua</option>
                                                 <!-- Menampilkan opsi ekskul yang sesuai -->
+                                                @php
+                                                    $addedEkskul = []; // Array untuk menyimpan ekskul yang sudah ditambahkan
+                                                @endphp
                                                 @foreach ($studentDatas as $data)
-                                                    <option value="{{ $data->ekskul_id }}">{{ $data->ekskul->nama_ekskul }}</option>
+                                                    @if (!in_array($data->ekskul_id, $addedEkskul))
+                                                        <!-- Jika ekskul belum ditambahkan, tambahkan ke dropdown dan array $addedEkskul -->
+                                                        <option value="{{ $data->ekskul_id }}">{{ $data->ekskul->nama_ekskul }}</option>
+                                                        @php
+                                                            $addedEkskul[] = $data->ekskul_id;
+                                                        @endphp
+                                                    @endif
                                                 @endforeach
-                                                <!-- Add more options as needed -->
+                                                <!-- Tambahkan opsi lain jika diperlukan -->
                                             </select>
                                         </div>
                                     </form>
                                 </div>
+                                
                                 <form action="{{ route('data.update') }}" method="POST">
                                     @csrf
                                     @method('PUT')

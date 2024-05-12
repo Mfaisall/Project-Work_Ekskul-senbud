@@ -4,11 +4,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Modernize Free</title>
+  <title>Haalaman Dashboard</title>
   <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+<style>
+  .logo-img {
+    font-family: Arial, sans-serif; /* Pilih font yang sesuai */
+    font-size: 24px; /* Ukuran font */
+    color: #333; /* Warna teks */
+    text-decoration: none; /* Hilangkan garis bawah */
+    transition: transform 0.3s ease; /* Efek transisi */
+}
+
+.logo-img:hover {
+    transform: scale(1.1); /* Memperbesar teks saat dihover */
+}
+
+
+</style>
 
 <body>
   <!--  Body Wrapper -->
@@ -19,9 +34,8 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a  class="text-nowrap logo-img">
-            {{-- <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" /> --}}
-            {{-- <span class="text-black text-center ">Dashboard</span> --}}
+          <a  class="text-nowrap logo-img text-black">
+            {{-- Ekskul Seni Budaya --}}
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>
@@ -47,6 +61,14 @@
               </a>
             </li>
             <li class="sidebar-item">
+              <a class="sidebar-link" href="{{ route('data.instruktur') }}" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Data Absensi instruktur</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
               <a class="sidebar-link" href="{{ route('jadwal') }}" aria-expanded="false">
                   <span>
                       <i class="ti ti-article"></i>
@@ -54,6 +76,7 @@
                   <span class="hide-menu">Jadwal Ekskul</span>
               </a>
           </li>
+          @if(auth()->check() && auth()->user()->role === 'admin')
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ route('data.rayon.create') }}" aria-expanded="false">
                 <span>
@@ -86,6 +109,7 @@
                 <span class="hide-menu">Tambah Ruangan</span>
               </a>
             </li>
+            @endif
             <li class="sidebar-item">
               <a class="sidebar-link" href="{{ route('data.gallery') }}" aria-expanded="false">
                 <span>
@@ -117,11 +141,11 @@
               <li class="nav-item dropdown">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
                   aria-expanded="false">
-                  <img src="../assets/images/profile/user-1.jpg" alt="" width="35" height="35" class="rounded-circle">
+                  <img  src="{{ asset('assets/image/user.png') }}" alt="" width="35" height="35" class="rounded-circle">
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                   <div class="message-body">
-                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                    <a href="{{ route('logout') }}" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                   </div>
                 </div>
               </li>
@@ -136,7 +160,7 @@
           <div class="col-lg-12 d-flex align-items-stretch">
             <div class="card" style="width: 200vh" >
               <div class="card-body w-100">
-                <h5 class="card-title fw-semibold mb-4">Selamat Datang Di, Dashboard</h5>
+                <h5 class="card-title fw-semibold mb-4">Selamat Datang Di, Dashboard, {{ Auth::user()->name }}</h5>
               </div>
             </div>
           </div>

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('absens', function (Blueprint $table) {
             $table->id();
             $table->BigInteger('student_id');
+            $table->dateTime('tanggalKehadiran');
             $table->enum('status_kehadiran', ['hadir', 'alpha', 'izin', 'sakit'])->default('hadir');
             $table->timestamps();
 

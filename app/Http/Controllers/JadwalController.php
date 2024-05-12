@@ -52,7 +52,7 @@ class JadwalController extends Controller
             'startTime' => $request->startTime,
             'endTime' => $request->endTime,
         ]);
-        return redirect()->route('jadwal')->with('');
+        return redirect()->route('jadwal')->with('AddJadwal', 'Berhasil menambah data jadwal');
     }
 
     /**

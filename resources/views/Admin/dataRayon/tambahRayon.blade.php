@@ -4,13 +4,24 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modernize Free</title>
+    <title>Tambah Data Rayon</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @if (session('AddRayon'))
+        <script>
+            swal({
+                title: "",
+                text: "Berhasil menambah data rayon",
+                icon: "success",
+            });
+        </script>
+    @endif
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
@@ -47,6 +58,14 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ route('data.instruktur') }}" aria-expanded="false">
+                              <span>
+                                <i class="ti ti-article"></i>
+                              </span>
+                              <span class="hide-menu">Data Absensi instruktur</span>
+                            </a>
+                          </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('jadwal') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-article"></i>
@@ -54,6 +73,7 @@
                                 <span class="hide-menu">Jadwal Ekskul</span>
                             </a>
                         </li>
+                        @if(auth()->check() && auth()->user()->role === 'admin')
                         <li class="sidebar-item">
                             <a class="sidebar-link active" href="{{ route('data.rayon.create') }}" aria-expanded="false">
                                 <span>
@@ -86,6 +106,7 @@
                               <span class="hide-menu">Tambah Ruangan</span>
                             </a>
                           </li>
+                          @endif
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('data.gallery') }}" aria-expanded="false">
                                 <span>
@@ -118,13 +139,13 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../assets/images/profile/user-1.jpg" alt="" width="35"
+                                    <img src="{{ asset('assets/image/user.png') }}" alt="" width="35"
                                         height="35" class="rounded-circle">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
                                     aria-labelledby="drop2">
                                     <div class="message-body">
-                                        <a href="./authentication-login.html"
+                                        <a href="{{ route('logout') }}"
                                             class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                                     </div>
                                 </div>

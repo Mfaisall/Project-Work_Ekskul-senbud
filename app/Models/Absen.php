@@ -10,6 +10,7 @@ class Absen extends Model
     use HasFactory;
     protected $fillable = [
         "student_id",
+        'tanggalKehadiran',
         "status_kehadiran",
     ];
 

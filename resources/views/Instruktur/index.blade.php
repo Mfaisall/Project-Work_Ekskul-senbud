@@ -4,10 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tambah Data Jadwal</title>
+    <title>Data Absen Student</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .custom-checkbox {
             position: relative;
@@ -62,17 +64,26 @@
 </head>
 
 <body>
-
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    @if (session('AddJadwal'))
+    @if (session('addBerhasil'))
         <script>
             swal({
                 title: "",
-                text: "Berhasil menambah data jadwal",
+                text: "Berhasil menambah data instruktur",
                 icon: "success",
             });
         </script>
     @endif
+    @if (session('successAbsensi'))
+    <script>
+        swal({
+            title: "",
+            text: "Berhasil mengupdate data absensi",
+            icon: "success",
+        });
+    </script>
+@endif
+    
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
@@ -110,12 +121,12 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('data.instruktur') }}" aria-expanded="false">
-                              <span>
-                                <i class="ti ti-article"></i>
-                              </span>
-                              <span class="hide-menu">Data Absensi instruktur</span>
+                                <span>
+                                    <i class="ti ti-article"></i>
+                                </span>
+                                <span class="hide-menu">Data Absensi Instruktur</span>
                             </a>
-                          </li>
+                        </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('jadwal') }}" aria-expanded="false">
                                 <span>
@@ -124,40 +135,40 @@
                                 <span class="hide-menu">Jadwal Ekskul</span>
                             </a>
                         </li>
-                        @if(auth()->check() && auth()->user()->role === 'admin')
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('data.rayon.create') }}" aria-expanded="false">
-                                <span>
-                                    <i class="fa-solid fa-file-circle-plus"></i>
-                                </span>
-                                <span class="hide-menu">Tambah Rayon</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('data.rombel.create') }}" aria-expanded="false">
-                                <span>
-                                    <i class="fa-solid fa-file-circle-plus"></i>
-                                </span>
-                                <span class="hide-menu">Tambah Rombel</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('data.ekskul.create') }}" aria-expanded="false">
-                                <span>
-                                    <i class="fa-solid fa-file-circle-plus"></i>
-                                </span>
-                                <span class="hide-menu">Tambah Kategori Ekskul</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('create.room') }}" aria-expanded="false">
-                              <span>
-                                <i class="fa-solid fa-file-circle-plus"></i>
-                              </span>
-                              <span class="hide-menu">Tambah Ruangan</span>
-                            </a>
-                          </li>
-                          @endif
+                        @if (auth()->check() && auth()->user()->role === 'admin')
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('data.rayon.create') }}" aria-expanded="false">
+                                    <span>
+                                        <i class="fa-solid fa-file-circle-plus"></i>
+                                    </span>
+                                    <span class="hide-menu">Tambah Rayon</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('data.rombel.create') }}" aria-expanded="false">
+                                    <span>
+                                        <i class="fa-solid fa-file-circle-plus"></i>
+                                    </span>
+                                    <span class="hide-menu">Tambah Rombel</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('data.ekskul.create') }}" aria-expanded="false">
+                                    <span>
+                                        <i class="fa-solid fa-file-circle-plus"></i>
+                                    </span>
+                                    <span class="hide-menu">Tambah Kategori Ekskul</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('create.room') }}" aria-expanded="false">
+                                    <span>
+                                        <i class="fa-solid fa-file-circle-plus"></i>
+                                    </span>
+                                    <span class="hide-menu">Tambah Ruangan</span>
+                                </a>
+                            </li>
+                        @endif
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('data.gallery') }}" aria-expanded="false">
                                 <span>
@@ -190,7 +201,7 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img  src="{{ asset('assets/image/user.png') }}"alt="" width="35"
+                                    <img src="{{ asset('assets/image/user.png') }}" alt="" width="35"
                                         height="35" class="rounded-circle">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
@@ -212,33 +223,22 @@
                     <div class="col-lg-12 d-flex align-items-stretch">
                         <div class="card" style="width: 200vh">
                             <div class="card-body w-100">
-                                <h5 class="text-center card-title fw-semibold mb-4">Jadwal Ekstrakurikuler/senbud</h5>
-                              
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="mb-4 d-flex flex-column align-items-start">
-                                        <label for="dayFilter" class="form-label">Filter by Hari:</label>
-                                        <select class="form-select" id="dayFilter" style="width:30vh;">
-                                            <option value="">Semua Hari</option>
-                                            <option value="senin">Senin</option>
-                                            <option value="selasa">Selasa</option>
-                                            <option value="rabu">Rabu</option>
-                                            <option value="kamis">Kamis</option>
-                                            <option value="jumat">Jumat</option>
-                                            <option value="sabtu">Sabtu</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        @if(auth()->check() && auth()->user()->role === 'admin')
-                                        <button type="button" class="btn btn-success m-2" data-toggle="modal" data-target="#exampleModalLong">Tambah Jadwal</button>
-                                        @endif
-                                    </div>
-                                </div>
+                                <h5 class="card-title fw-semibold mb-4">Data Absensi Instruktur</h5>
+                                <a class="btn btn-primary m-2 float-end" href="{{ route('edit.data') }}"> Koreksi
+                                    Absensi</a>
+                                @if (auth()->check() && auth()->user()->role === 'admin')
+                                    <button type="button" class="btn btn-success float-end m-2" data-toggle="modal"
+                                        data-target="#exampleModalLong">
+                                        Tambah Data Instruktur
+                                    </button>
+                                @endif
+
                                 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLongTitle">Tambah Jadwal Ekskul
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Tambah Data instruktur
                                                 </h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
@@ -247,47 +247,19 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="card-body">
-                                                    <form action="{{ route('store.jadwal') }}" method="POST">
+                                                    <form action="{{ route('store.instruktur') }}" method="POST">
                                                         @csrf
                                                         <div class="form-group mb-3">
-                                                            <label>Hari</label>
-                                                            <select name="schedule" class="form-control">
-                                                                <option value="" selected disabled>Pilih hari</option>
-                                                                <option value="senin" >Senin</option>
-                                                                <option value="selasa" >Selasa</option>
-                                                                <option value="rabu" >Rabu</option>
-                                                                <option value="kamis" >Kamis</option>
-                                                                <option value="jumat" >Jumat</option>
-                                                                <option value="sabtu" >Sabtu</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group mb-3">
-                                                            <label>Kelas</label>
-                                                            <select name="kelas" class="form-control">
-                                                                <option value="" selected disabled>Pilih kelas</option>
-                                                                <option value="X" >X</option>
-                                                                <option value="XI" >XI</option>
-                                                                <option value="XII" >XII</option>
-                                                            </select>
+                                                            <label>Nama Lengkap</label>
+                                                            <input type="text" name="nama"
+                                                                placeholder="Masukkan Nama"
+                                                                class="form-control">
                                                         </div>
 
                                                         <div class="form-group mb-3">
-                                                            <label>Ruangan</label>
-                                                            <select name="room_id" class="form-control">
-                                                                <option value="" selected disabled>Pilih Ruangan
-                                                                </option>
-                                                                @foreach ($kelas as $data)
-                                                                    <option value="{{ $data->id }}">
-                                                                        {{ $data->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="form-group mb-3 ">
-                                                            <label>Ekskul</label>
-                                                            {{-- <input type="text" name="rayon" placeholder="Masukkan Rayon" class="form-control"> --}}
+                                                            <label>jenis Ekskul</label>
                                                             <select name="ekskul_id" class="form-control">
-                                                                <option value="" selected disabled>Pilih ekskul
+                                                                <option value="" selected disabled>Pilih jenis ekskul
                                                                 </option>
                                                                 @foreach ($ekskul as $data)
                                                                     <option value="{{ $data->id }}">
@@ -297,13 +269,13 @@
                                                         </div>
 
                                                         <div class="form-group mb-3">
-                                                            <label>Jam mulai</label>
-                                                            <input type="time" id="startTime" class="form-control" name="startTime"><br>
-                                                        </div>
-
-                                                        <div class="form-group mb-3">
-                                                            <label>Jam Selesai</label>
-                                                            <input type="time" id="endTime" class="form-control" name="endTime"><br>
+                                                            <label>Jenis Kelamin</label>
+                                                            <select name="jk" class="form-control mb-3">
+                                                                <option selected hidden disabled>Silahkan Pilih Jenis
+                                                                    Kelamin</option>
+                                                                <option value="Laki-laki">Laki-Laki</option>
+                                                                <option value="Perempuan">Perempuan</option>
+                                                            </select>
                                                         </div>
                                                 </div>
                                                 <div class="modal-footer ">
@@ -320,27 +292,62 @@
                                     <thead class="table-success">
                                         <tr>
                                             <th scope="col">No</th>
-                                            <th scope="col">Hari</th>
-                                            <th scope="col">Kelas</th>
-                                            <th scope="col">Ruangan</th>
-                                            <th scope="col">Ekstrakurikuler/senbud</th>
-                                            <th scope="col">Jam mulai</th>
-                                            <th scope="col">Jam Selesai</th>
+                                            <th scope="col">Nama Instruktur</th>
+                                            <th scope="col">Nama Ekskul</th>
+                                            <th scope="col">Jenis Ekstrakurikuler</th>
+                                            <th scope="col">Jenis Kelamin</th>
+                                            <th scope="col">Tanggal kehadiran</th>
+                                            <th scope="col">Hadir</th>
+                                            <th scope="col">Alpha</th>
+                                            <th scope="col">Sakit</th>
+                                            <th scope="col">Izin</th>
                                         </tr>
                                     </thead>
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach($datajadwal as $data)
+                                    @foreach ($DataIns as $data)
                                         <tbody>
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $data->schedule }}</td>
-                                                <td>{{ $data->kelas }}</td>
-                                                <td>{{ $data->room->name }}</td>
-                                                <td>{{ $data->ekskul->nama_ekskul }}</td>
-                                                <td>{{ $data->startTime }}</td>
-                                                <td>{{ $data->endTime}}</td>
+                                                <td>{{ $data->nama }}</td>
+                                                <td> {{ $data->ekskul->nama_ekskul }}</td>
+                                                <td> {{ $data->ekskul->category }}</td>
+                                                <td>{{ $data->jk }}</td>
+                                                <td>
+                                                    @if ($data->absen && $data->absen->tanggalKehadiran)
+                                                        {{-- Tampilkan tanggal kehadiran jika tanggal kehadiran ada --}}
+                                                        {{ \Carbon\Carbon::parse($data->absen->tanggalKehadiran)->format('j F, Y') }}
+                                                    @else
+                                                        {{-- Tampilkan pesan "Belum Absen" jika tanggal kehadiran tidak ada --}}
+                                                        Belum Absen
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <label class="custom-checkbox">
+                                                        <input type="checkbox" name="status_kehadiran {{ $data->id }}[]" value="hadir" {{ $data->absen && $data->absen->status_kehadiran === 'hadir' ? 'checked' : '' }} disabled>
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <label class="custom-checkbox">
+                                                        <input type="checkbox" name="status_kehadiran {{ $data->id }}[]" value="alpha" {{ $data->absen && $data->absen->status_kehadiran === 'alpha' ? 'checked' : '' }} disabled>
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <label class="custom-checkbox">
+                                                        <input type="checkbox" name="status_kehadiran {{ $data->id }}[]" value="sakit" {{ $data->absen && $data->absen->status_kehadiran === 'sakit' ? 'checked' : '' }} disabled>
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <label class="custom-checkbox">
+                                                        <input type="checkbox" name="status_kehadiran {{ $data->id }}[]" value="izin" {{ $data->absen && $data->absen->status_kehadiran === 'izin' ? 'checked' : '' }} disabled>
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </td>
+                                                
                                             </tr>
                                         </tbody>
                                     @endforeach
@@ -359,22 +366,6 @@
             <script src="../assets/js/dashboard.js"></script>
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-            <script>
-                $(document).ready(function () {
-                    $('#dayFilter').change(function () {
-                        var selectedDay = $(this).val().toLowerCase();
-                        if (selectedDay) {
-                            $('table tbody tr').hide().filter(function () {
-                                return $(this).find('td:nth-child(2)').text().toLowerCase().indexOf(selectedDay) !== -1;
-                            }).show();
-                        } else {
-                            $('table tbody tr').show();
-                        }
-                    });
-                });
-            </script>
-            
 </body>
 
 </html>

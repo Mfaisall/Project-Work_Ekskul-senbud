@@ -8,6 +8,7 @@ use App\Models\Kehadiran;
 use App\Models\Rombel;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class AbsenController extends Controller
 {
@@ -66,12 +67,16 @@ class AbsenController extends Controller
         ]);
     
         $kehadiran = $request->status_kehadiran;
+
+        // Carbon::setTimezone('Asia/Jakarta');
+
+        $tanggalKehadiran = Carbon::now()->setTimezone('Asia/Jakarta');
     
         foreach ($kehadiran as $studentId => $status) {
-            Absen::where('student_id', $studentId)->updateOrCreate(['student_id' => $studentId], ['status_kehadiran' => $status]);
+            Absen::where('student_id', $studentId)->updateOrCreate(['student_id' => $studentId], ['status_kehadiran' => $status, 'tanggalKehadiran' => $tanggalKehadiran,]);
         }
         
-        return redirect()->route('data.all')->with('success', 'Data absensi siswa berhasil diperbarui.');
+        return redirect()->route('data.all')->with('successAbs', 'Data absensi siswa berhasil diperbarui.');
     }
 
     /**

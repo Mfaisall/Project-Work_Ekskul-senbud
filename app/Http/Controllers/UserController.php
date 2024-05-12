@@ -23,7 +23,7 @@ class UserController extends Controller
     }
 
     public function auth(Request $request){
-        dd($request->all());
+        // dd($request->all());
         $request->validate([
             'name' => 'required',
             'password' => 'required',
@@ -31,14 +31,8 @@ class UserController extends Controller
 
         $user = $request->only('name', 'password');
         if (Auth::attempt($user)){
-            if (Auth::user()->role == 'admin') {
-                return redirect()->route('dashboard-admin');
-            } elseif (Auth::user()->role == 'guru') {
-                return redirect()->route('dashboard-guru');
+                return redirect()->route('dashboard');
             }
-        } else {
-            return redirect()->back()->with('failed', "Gagal login silah cek kemabali");
-        }
     }
 
     /**
@@ -101,4 +95,10 @@ class UserController extends Controller
     {
         //
     }
+
+    public function logout(){
+        auth::logout();
+        return redirect('/');
+    }
+
 }

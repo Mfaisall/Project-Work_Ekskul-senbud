@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('instrukturs', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('alamat');
+            $table->bigInteger('ekskul_id');
             $table->enum('jk', ['Laki-laki', 'Perempuan']);
             $table->timestamps();
         });

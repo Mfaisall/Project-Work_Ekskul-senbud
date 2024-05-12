@@ -4,10 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Modernize Free</title>
+    <title>Data Absen Student</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .custom-checkbox {
             position: relative;
@@ -62,6 +64,25 @@
 </head>
 
 <body>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @if (session('success'))
+        <script>
+            swal({
+                title: "",
+                text: "Berhasil menambah data siswa",
+                icon: "success",
+            });
+        </script>
+    @endif
+    @if (session('successAbs'))
+    <script>
+        swal({
+            title: "",
+            text: "Berhasil mengupdate data absensi",
+            icon: "success",
+        });
+    </script>
+@endif
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
@@ -98,6 +119,14 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ route('data.instruktur') }}" aria-expanded="false">
+                              <span>
+                                <i class="ti ti-article"></i>
+                              </span>
+                              <span class="hide-menu">Data Absensi instruktur</span>
+                            </a>
+                          </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('jadwal') }}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-article"></i>
@@ -105,40 +134,42 @@
                                 <span class="hide-menu">Jadwal Ekskul</span>
                             </a>
                         </li>
+                        @if (auth()->check() && auth()->user()->role === 'admin')
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('data.rayon.create') }}" aria-expanded="false">
+                                    <span>
+                                        <i class="fa-solid fa-file-circle-plus"></i>
+                                    </span>
+                                    <span class="hide-menu">Tambah Rayon</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('data.rombel.create') }}" aria-expanded="false">
+                                    <span>
+                                        <i class="fa-solid fa-file-circle-plus"></i>
+                                    </span>
+                                    <span class="hide-menu">Tambah Rombel</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('data.ekskul.create') }}" aria-expanded="false">
+                                    <span>
+                                        <i class="fa-solid fa-file-circle-plus"></i>
+                                    </span>
+                                    <span class="hide-menu">Tambah Kategori Ekskul</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('create.room') }}" aria-expanded="false">
+                                    <span>
+                                        <i class="fa-solid fa-file-circle-plus"></i>
+                                    </span>
+                                    <span class="hide-menu">Tambah Ruangan</span>
+                                </a>
+                            </li>
+                        @endif
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('data.rayon.create') }}" aria-expanded="false">
-                                <span>
-                                    <i class="fa-solid fa-file-circle-plus"></i>
-                                </span>
-                                <span class="hide-menu">Tambah Rayon</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('data.rombel.create') }}" aria-expanded="false">
-                                <span>
-                                    <i class="fa-solid fa-file-circle-plus"></i>
-                                </span>
-                                <span class="hide-menu">Tambah Rombel</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('data.ekskul.create') }}" aria-expanded="false">
-                                <span>
-                                    <i class="fa-solid fa-file-circle-plus"></i>
-                                </span>
-                                <span class="hide-menu">Tambah Kategori Ekskul</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('create.room') }}" aria-expanded="false">
-                              <span>
-                                <i class="fa-solid fa-file-circle-plus"></i>
-                              </span>
-                              <span class="hide-menu">Tambah Ruangan</span>
-                            </a>
-                          </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('data.gallery') }}" aria-expanded="false">
                                 <span>
                                     <i class="fa-solid fa-image"></i>
                                 </span>
@@ -169,13 +200,13 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="../assets/images/profile/user-1.jpg" alt="" width="35"
+                                    <img src="{{ asset('assets/image/user.png') }}" alt="" width="35"
                                         height="35" class="rounded-circle">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
                                     aria-labelledby="drop2">
                                     <div class="message-body">
-                                        <a href="./authentication-login.html"
+                                        <a href="{{ route('logout') }}"
                                             class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                                     </div>
                                 </div>
@@ -194,10 +225,12 @@
                                 <h5 class="card-title fw-semibold mb-4">Data Absensi Siswa</h5>
                                 <a class="btn btn-primary m-2 float-end" href="{{ route('data.edit') }}"> Koreksi
                                     Absensi</a>
-                                <button type="button" class="btn btn-success float-end m-2" data-toggle="modal"
-                                    data-target="#exampleModalLong">
-                                    Tambah Data Siswa
-                                </button>
+                                @if (auth()->check() && auth()->user()->role === 'admin')
+                                    <button type="button" class="btn btn-success float-end m-2" data-toggle="modal"
+                                        data-target="#exampleModalLong">
+                                        Tambah Data Siswa
+                                    </button>
+                                @endif
 
                                 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -298,6 +331,7 @@
                                             <th scope="col">Jenis Kelamin</th>
                                             <th scope="col">Jenis Ekstrakurikuler</th>
                                             <th scope="col">Nama Ekskul</th>
+                                            <th scope="col">Tanggal kehadiran</th>
                                             <th scope="col">Hadir</th>
                                             <th scope="col">Alpha</th>
                                             <th scope="col">Sakit</th>
@@ -319,12 +353,19 @@
                                                 <td> {{ $data->ekskul->category }}</td>
                                                 <td> {{ $data->ekskul->nama_ekskul }}</td>
                                                 <td>
+                                                    @if ($data->absen && $data->absen->tanggalKehadiran)
+                                                        {{-- Tampilkan tanggal kehadiran jika tanggal kehadiran ada --}}
+                                                        {{ \Carbon\Carbon::parse($data->absen->tanggalKehadiran)->format('j F, Y') }}
+                                                    @else
+                                                        {{-- Tampilkan pesan "Belum Absen" jika tanggal kehadiran tidak ada --}}
+                                                        Belum Absen
+                                                    @endif
+                                                </td>
+                                                <td>
                                                     <label class="custom-checkbox">
-                                                        @if (!$data->absen || $data->absen->status_kehadiran == null || $data->absen->status_kehadiran == 'hadir')
-                                                            <input type="checkbox" name="kehadiran" checked disabled>
-                                                        @else
-                                                            <input type="checkbox" name="kehadiran" disabled>
-                                                        @endif
+                                                        <input type="checkbox" name="kehadiran"
+                                                        {{ $data->absen && $data->absen->status_kehadiran == 'hadir' ? 'checked' : '' }}
+                                                        disabled>
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </td>
