@@ -1,66 +1,32 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Halaman Sebagai Admin
+![840260515b77](https://github.com/Mfaisall/Project-Work_Ekskul-senbud/assets/91299374/9d7d7642-c320-40da-b81a-c7bc57109f41)
+halaman Login 
+![2ff64071-50c3-4e3f-ba45-8765ab8b4dde](https://github.com/Mfaisall/Project-Work_Ekskul-senbud/assets/91299374/19b3c73b-4d5a-4019-a79c-d63a98671d1b)
+Dashboard Admin. Memiliki fitur yaitu 
+Data Absensi Siswa ,
+Menambah Jadwal Ekskul ,
+Menambah Data Rayon ,
+Menambah Data Rombel ,
+Menambah Data Kategori Ekskul ,
+Menambah Data Ruangan Ekskul ,
+Menambah Data Galeri/foto Ekskul .
+![c4c52b2f-74e9-4d8e-a9a5-192c16dfd77e](https://github.com/Mfaisall/Project-Work_Ekskul-senbud/assets/91299374/60659392-d136-49d6-987d-7bbd62d94e03)
+Halaman Admin, Absen Siswa. Disini Admin Hanya bisa menambahkan data Siswa saja .
+![78b5fbfe-aa36-4581-bede-989edac91f5f](https://github.com/Mfaisall/Project-Work_Ekskul-senbud/assets/91299374/0f93cfc5-09fb-4766-ba21-2e26eeff035a)
+Halaman Admin, Jadwal Ekskul. Disini Admin bisa menambahkan Jadwal eksul 
+![0a1438c6-eae3-4c4b-8d15-f92af19ecedf](https://github.com/Mfaisall/Project-Work_Ekskul-senbud/assets/91299374/b8d421e3-88ff-4766-a57d-516bb658bfbc)
+Halaman Admin, Untuk menambah data Rayon
+![58073593-4151-4b8b-82e0-8301fc4d8782](https://github.com/Mfaisall/Project-Work_Ekskul-senbud/assets/91299374/0765958e-7153-4091-99a5-8c2d27cc3aa3)
+Halaman Admin, Untuk menambah data Rombel
+![668887df-983b-48c2-bacb-707d39d2f423](https://github.com/Mfaisall/Project-Work_Ekskul-senbud/assets/91299374/e0e96399-ff03-4bfc-9461-9b16b73e29dd)
+Halaman Admin, Untuk menambah Data Kategori ekskul 
+![a529ef0e-4bcb-43a1-9346-b85f03f42e9a](https://github.com/Mfaisall/Project-Work_Ekskul-senbud/assets/91299374/fcd731df-39a3-43ec-aecd-c4debf9817da)
+Halaman Admin, Untuk menambah data ruangan ekskul
+![a0e07c03-d9e5-4ec5-b962-cfa8d79bcc39](https://github.com/Mfaisall/Project-Work_Ekskul-senbud/assets/91299374/df28d184-2fe4-4416-9d27-49314b77056a)
+Halaman Admin, Untuk menambah data Galeri/Foto prestasi ekskul
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Halaman Sebagai Guru
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
