@@ -39,5 +39,8 @@ Galeri/foto.
 Halaman Guru, Absen siswa disini guru bisa mengkoreksi absensi, hadir apa ngga nya.
 ![2dabd73e-da9f-4070-8b93-4a89dfa1713d](https://github.com/Mfaisall/Project-Work_Ekskul-senbud/assets/91299374/57b51c1f-d5d5-4a5b-9700-f9bb1d46839f)
 Halaman Guru, jadwal ekskul disini Guru hanya bisa melihat jadwal ekskul saja
+![image](https://github.com/Mfaisall/Project-Work_Ekskul-senbud/assets/91299374/742bd1e8-fb00-49a8-8076-79af53c754aa)
+Halaman Guru, galeri/foto disini guru hanya bisa melihat galeri/foto saja 
+
 
 
